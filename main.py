@@ -1,5 +1,5 @@
 from models import Venue, Event
-from booking import BookingEngine, OverbookingError
+from bookings import BookingEngine, OverbookingError
 from analytics import *
 
 # Data
