@@ -20,7 +20,7 @@ bookings_raw = [
     ("charlie", "EVT04", 2),
 ]
 
-# Create events
+
 venues = {}
 events = {}
 
@@ -29,7 +29,6 @@ for id, name, dt, venue_name, cap, price in events_data:
         venues[venue_name] = Venue(venue_name, cap)
     events[id] = Event(id, name, dt, venues[venue_name], price)
 
-# Booking engine
 engine = BookingEngine()
 all_bookings = []
 
@@ -40,7 +39,6 @@ for customer, eid, qty in bookings_raw:
     except OverbookingError:
         pass
 
-# Analytics
 report = revenue_report(events, all_bookings)
 top = top_event(report, events)
 total = total_revenue(report)
@@ -48,7 +46,6 @@ spend = customer_spend(all_bookings)
 vip = vip_customers(spend)
 daily = daily_revenue(all_bookings)
 
-# Output
 print("Revenue Report:", report)
 print("Top Event:", top)
 print("Total Revenue:", total)
