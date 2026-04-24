@@ -5,7 +5,7 @@ class OverbookingError(Exception):
 class Booking:
     counter = 1
 
-    def _init_(self, customer, event, num_tickets):
+    def __init__(self, customer, event, num_tickets):
         self.customer = customer
         self.event = event
         self.num_tickets = num_tickets
@@ -13,12 +13,12 @@ class Booking:
         Booking.counter += 1
         self.total_price = event.ticket_price * num_tickets
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.booking_id} - {self.customer} - {self.event.name} - {self.num_tickets} tickets"
 
 
 class BookingEngine:
-    def _init_(self):
+    def __init__(self):
         self.event_seats = {}
         self.bookings = {}
         self.waiting_list = {}
