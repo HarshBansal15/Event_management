@@ -5,7 +5,7 @@ class OverbookingError(Exception):
 class Booking:
     counter = 1
 
-    def _init_(self, customer, event, num_tickets):
+    def __init__(self, customer, event, num_tickets):
         self.customer = customer
         self.event = event
         self.num_tickets = num_tickets
@@ -13,13 +13,13 @@ class Booking:
         Booking.counter += 1
         self.total_price = event.ticket_price * num_tickets
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.booking_id} - {self.customer} - {self.event.name} - {self.num_tickets} tickets"
 
 
 class BookingEngine:
-    def _init_(self):
-        self.event_seats = {}
+    def __init__(self):
+        self.event_seats = {}   # ✅ IMPORTANT
         self.bookings = {}
         self.waiting_list = {}
 
@@ -31,14 +31,14 @@ class BookingEngine:
             raise OverbookingError("Not enough seats!")
 
         booking = Booking(customer, event, qty)
-        self.bookings[booking.booking_id] = booking
+        self.bookings[booking.booking_id] = booking   # ✅ fixed
         self.event_seats[event] = seats_booked + qty
 
         return booking
 
     def cancel(self, booking_id):
         if booking_id in self.bookings:
-            booking = self.bookings.pop(booking_id)
+            booking = self.bookings.pop(booking_id)   # ✅ fixed
             self.event_seats[booking.event] -= booking.num_tickets
 
     def seats_left(self, event):
