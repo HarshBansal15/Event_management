@@ -19,7 +19,7 @@ class Booking:
 
 class BookingEngine:
     def __init__(self):
-        self.event_seats = {}   # ✅ IMPORTANT
+        self.event_seats = {}  
         self.bookings = {}
         self.waiting_list = {}
 
@@ -31,14 +31,14 @@ class BookingEngine:
             raise OverbookingError("Not enough seats!")
 
         booking = Booking(customer, event, qty)
-        self.bookings[booking.booking_id] = booking   # ✅ fixed
+        self.bookings[booking.booking_id] = booking  
         self.event_seats[event] = seats_booked + qty
 
         return booking
 
     def cancel(self, booking_id):
         if booking_id in self.bookings:
-            booking = self.bookings.pop(booking_id)   # ✅ fixed
+            booking = self.bookings.pop(booking_id)  
             self.event_seats[booking.event] -= booking.num_tickets
 
     def seats_left(self, event):
